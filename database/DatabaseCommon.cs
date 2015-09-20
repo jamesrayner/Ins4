@@ -16,15 +16,16 @@ namespace Ins4.database
         private void _OpenConnection()
         {
             // get the connection string
-            if (_mConnectionString.Length == 0)
+            if ((_mConnectionString == null) || (_mConnectionString.Length == 0))
             {
-                string _mConnectionString = ConfigurationManager.ConnectionStrings["defaultConnection"].ConnectionString;
+                _mConnectionString = ConfigurationManager.ConnectionStrings["defaultConnection"].ConnectionString;
             }
 
             // connect if necessary
-            if (_mConnection.State != System.Data.ConnectionState.Open)
+            if ((_mConnection == null) || (_mConnection.State != System.Data.ConnectionState.Open))
             {
-                _mConnection.ConnectionString = _mConnectionString;
+                _mConnection = new SqlConnection(_mConnectionString);
+                // _mConnection.ConnectionString = _mConnectionString;
                 _mConnection.Open();
             }
         }
@@ -41,13 +42,20 @@ namespace Ins4.database
         {
             get
             {
-                if (_mConnection.State != System.Data.ConnectionState.Open)
+                if ((_mConnection == null) || (_mConnection.State != System.Data.ConnectionState.Open))
                 {
                     _OpenConnection();
                 }
 
                 return _mConnection;
             }
+        }
+
+        public SqlDataReader GetDataReader(string pSql)
+        {
+            SqlCommand cmd = Connection.CreateCommand();
+            cmd.CommandText = pSql;
+            return cmd.ExecuteReader();
         }
                 
         public DatabaseCommon()

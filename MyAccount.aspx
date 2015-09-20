@@ -6,13 +6,7 @@
     <div class="common">
         <div class="container">
             <!-- Content Row -->
-            <div class="row">
-                    <p>Account Info</p>
-            </div>
-            <div class="row">
-
-
-            </div>
+            <% LoadAccountInfo(); %>
         </div>
     </div>
 </asp:Content>

@@ -9,14 +9,16 @@ namespace Ins4.database
     public class AccountData
     {
         private DatabaseCommon helper;
-        private Guid _mAccountId;
+        private string _mAccountId;
 
-        public void GetAccountData()
+        public SqlDataReader GetAccountData()
         {
-            string sql = "select 
-        }        
+            string sql = "select * from vwPersonProductDetail where PersonId = '" + _mAccountId + "';";
+            SqlDataReader rdr = helper.GetDataReader(sql);
+            return rdr;
+        } 
                         
-        public AccountData(Guid accountId)
+        public AccountData(string accountId)
         {
             helper = new DatabaseCommon();
             _mAccountId = accountId;

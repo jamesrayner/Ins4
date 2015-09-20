@@ -1,1 +1,23 @@
-﻿
+﻿.product-row
+{
+    border-width: 1px;
+    border-color: #006600;
+    border-style: dotted;
+}
+
+.product-table-hdr
+{
+    border-width: 1px;
+    border-color: #006600;
+    border-style: dotted;
+}
+
+.product-table-row
+{
+    border-width: 1px;
+    border-color: #006600;
+    border-bottom-style: dotted; 
+    border-right-style: dotted;
+    border-left-style: dotted;
+}
+
